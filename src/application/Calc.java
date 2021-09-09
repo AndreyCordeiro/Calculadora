@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Calc {
 
+    Scanner sc = new Scanner(System.in);
+
     public void menu() {
         while (true) {
-            Scanner sc = new Scanner(System.in);
             System.out.println("\n=-=-=-=-=-= CALCULADORA =-=-=-=-=-=");
             System.out.print("1 - Soma" +
                     "\n2 - Subtração" +
@@ -15,7 +16,8 @@ public class Calc {
                     "\n5 - Verificar se um número é Par ou Ímpar" +
                     "\n6 - Raiz Quadrada" +
                     "\n7 - Número ao Quadrado" +
-                    "\n8 - Sair" +
+                    "\n8 - Calcular IMC" +
+                    "\n9 - Sair" +
                     "\nEscolha uma opção: ");
 
             int escolha = sc.nextInt();
@@ -61,6 +63,8 @@ public class Calc {
                 double a = sc.nextDouble();
                 aoQuadrado(a);
             } else if (escolha == 8) {
+                imc();
+            } else if (escolha == 9) {
                 System.out.println("Programa finalizado!");
                 break;
             } else {
@@ -103,5 +107,35 @@ public class Calc {
         Double resultado = a * a;
         System.out.println("O número informado elevado ao quadrado é: " + resultado);
         return resultado;
+    }
+
+    private void imc() {
+        System.out.print("Informe seu peso: ");
+        double peso = sc.nextDouble();
+
+        System.out.print("Informe sua altura: ");
+        double altura = sc.nextDouble();
+
+        double imc = peso / (altura * altura);
+
+        if (imc < 18.5) {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Abaixo do peso");
+        } else if (imc >= 18.6 && imc <= 24.9) {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Saudável");
+        } else if (imc >= 25.0 && imc <= 29.9) {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Peso em excesso");
+        } else if (imc >= 30.0 && imc <= 34.9) {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Obesidade Grau I");
+        } else if (imc >= 35.0 && imc <= 39.9) {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Obesidade Grau II (Severa)");
+        } else {
+            System.out.printf("Seu IMC é: %.2f", imc);
+            System.out.println(" Obesidade Grau III (Mórbida)");
+        }
     }
 }
